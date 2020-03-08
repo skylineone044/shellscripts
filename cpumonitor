@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo modprobe corefreqk
+sudo systemctl start corefreqd.service
+corefreq-cli
