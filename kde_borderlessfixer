@@ -1,0 +1,4 @@
+#!/bin/sh
+
+kwriteconfig5 --file kwinrc --group Windows --key BorderlessMaximizedWindows --type bool false
+qdbus org.kde.KWin /KWin reconfigure
