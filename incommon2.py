@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
+"""the main logic of the shellscripts to compare the
+common dependencies between a number of packages, outputted by pacman"""
 
 import sys
 
 def reader(deps):
+    """reads in the inputted text and concers it to a list"""
     all_list = deps.split("---")
     app_sep_list = []
     for i in range(len(all_list)):
@@ -19,10 +22,12 @@ def reader(deps):
     return app_sep_list
 
 def comparer(mainlist):
+    """compares the lists to each other continnually shrinking the common area"""
     for i in range(len(mainlist)):
         mainlist[0] = mainlist[0].intersection(mainlist[i])
         #print(mainlist[0])
     incommon = list(mainlist[0])
+    incommon.sort()
     output = ""
     for i in range(len(incommon)):
         output += f"{incommon[i]}\n"
@@ -30,6 +35,7 @@ def comparer(mainlist):
 
 
 def main(deps):
+    """main duh"""
     #comparer(reader())
     mainlist = reader(deps)
     comparer(mainlist)
