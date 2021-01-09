@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Convert any (? only tested mkv to mp4, but in theory it should work)
+# video file to mp4 with ffmpeg
+
+if [ -z "$1" ]
+  then
+    echo "No argument supplied"
+    exit
+fi
+
+if !([ -z "$1" ]) && [ -z "$2" ]
+  then
+    echo "No seocnd arg supplied, assuming target path"
+    echo "ffmpeg -i \"$1\" -codec copy \"${1%.*}.mp4\""
+    ffmpeg -i "$1" -codec copy "${1%.*}.mp4"
+    exit
+fi
+
+if !([ -z "$1" ]) && !([ -z "$2" ])
+  then
+    echo "specific target"
+    echo "ffmpeg -i \"$1\" -codec copy \"$2\""
+    ffmpeg -i "$1" -codec copy "$2"
+    exit
+fi
+
