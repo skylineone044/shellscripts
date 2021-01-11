@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if ([ -z "$1" ]) && [ $# -eq 0 ]
+  then
+    echo "No argument supplied, assuming conversion from png to mkv at 30 fps"
+    echo "ffmpeg -framerate 30 -pattern_type glob -i '*.png' -c:v libx265 -pix_fmt yuv420p out.mkv"
+    ffmpeg -framerate 30 -pattern_type glob -i '*.png' -c:v libx265 -pix_fmt yuv420p out.mkv
+    exit
+fi
+
+if !([ -z "$1" ]) && !([ -z "$2" ]) && !([ -z "$3" ])
+  then
+    echo "specific target"
+    echo "ffmpeg -framerate $3 -pattern_type glob -i \"*.$1\" -c:v libx265 -pix_fmt yuv420p \"$2\""
+    ffmpeg -framerate $3 -pattern_type glob -i "*.$1" -c:v libx265 -pix_fmt yuv420p "$2"
+    exit
+fi
