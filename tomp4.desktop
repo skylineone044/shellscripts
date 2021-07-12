@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=video/*;
+Actions=convertToMp4
+
+[Desktop Action convertToMp4]
+Name=Convert to mp4
+Icon=video
+Exec=/home/skyline/ShellScripts/tomp4.sh %u
