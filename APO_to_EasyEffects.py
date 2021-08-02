@@ -16,10 +16,10 @@ EE_DATA = {
         "equalizer": {
             "input-gain": 0.0,
             "left": {},
-            "right": {},
             "mode": "IIR",
-            "num-bands": 20,
-            "output-gain": APO_data[0][1],
+            "num-bands": len(APO_data)-2,
+            "output-gain": float(APO_data[0][1]),
+            "right": {},
             "split-channels": False,
         },
         "plugins_order": ["equalizer"],
