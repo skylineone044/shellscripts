@@ -17,7 +17,7 @@ EE_DATA = {
             "input-gain": 0.0,
             "left": {},
             "mode": "IIR",
-            "num-bands": len(APO_data)-2,
+            "num-bands": len(APO_data) - 2,
             "output-gain": float(APO_data[0][1]),
             "right": {},
             "split-channels": False,
@@ -32,7 +32,7 @@ for i, line in enumerate(APO_data):
     elif line[0] == "Filter":
         EE_DATA["output"]["equalizer"]["left"][f"band{int(APO_data[i][1][:-1])-1}"] = {
             "frequency": float(APO_data[i][5]),
-            "gain": float(APO_data[i][8]),
+            "gain": max(min(float(APO_data[i][8]), 35.0), -35.0),
             "mode": "APO (DR)",
             "mute": False,
             "q": float(APO_data[i][11]),
@@ -40,6 +40,11 @@ for i, line in enumerate(APO_data):
             "solo": False,
             "type": "Bell",
         }
+        if float(APO_data[i][8]) > 35.0 or float(APO_data[i][8]) < -35.0:
+            print(
+                f"WARNING clamping {float(APO_data[i][8])} to {max(min(float(APO_data[i][8]), 35.0), -35.0)}",
+                file=sys.stderr,
+            )
 
 
 EE_DATA["output"]["equalizer"]["right"] = EE_DATA["output"]["equalizer"]["left"]
