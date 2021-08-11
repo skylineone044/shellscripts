@@ -1,4 +1,0 @@
-#!/bin/sh
-
-python /usr/lib/deemix-pyweb/server.py&
-xdg-open localhost:6595/
