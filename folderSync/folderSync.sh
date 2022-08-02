@@ -17,8 +17,7 @@ DRY_RUN="--dry-run" # uncomment to enable try run
 echo "$MODE from $SOURCE to $DEST..."
 
 # get a list of open files in the source directory
-# from: https://serverfault.com/questions/775323/ignore-files-in-use-being-written-to-when-using-rsync
-OPEN_FILES=`find $SOURCE -type f -exec sh -c 'if lsof \`readlink -f {}\` > /dev/null; then echo \`realpath {}\`; fi' \;`
+OPEN_FILES=`lsof +D $SOURCE | rg -i " REG " | tr --squeeze-repeats ' ' | cut --delimiter=' ' --fields=9`
 echo "OPEN_FILES: "$OPEN_FILES
 # convert the list of absolute paths to "--exclude=/relative/path/from/source/dir" list
 EXCLUDE_PATTERNS=""
