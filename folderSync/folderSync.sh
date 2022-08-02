@@ -27,22 +27,17 @@ for file in $OPEN_FILES ; do
 done
 
 if [[ $MODE == "copy" ]]; then
-    (set -x; # show command before runningf
-     rsync \
-        -avhAXUH \
-        $EXCLUDE_PATTERNS \
-        "$SOURCE/" \
-        $DEST \
-        $DRY_RUN
-    )
+    REMOVE_FILES=""
 elif [[ $MODE == "move" ]]; then
-    (set -x; # show command before runningf
-     rsync \
-        -avhAXUH \
-        --remove-source-files \
-        $EXCLUDE_PATTERNS \
-        "$SOURCE/" \
-        $DEST \
-        $DRY_RUN
-    )
+    REMOVE_FILES="--remove-source-files"
 fi
+
+(set -x; # show command before runningf
+    rsync \
+    -avhAXUH \
+    $REMOVE_FILES \
+    $EXCLUDE_PATTERNS \
+    "$SOURCE/" \
+    $DEST \
+    $DRY_RUN
+)
