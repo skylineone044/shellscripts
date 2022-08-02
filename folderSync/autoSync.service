@@ -1,0 +1,11 @@
+[Unit]
+Description=Automatically copy / move files in direcotry pairs defined in a config file; Defauld config file location: $XDG_CONFIG_HOME/folderSync.conf
+Documentation=https://gitlab.com/skylineone044/shellscripts/-/tree/master/folderSync
+
+[Service]
+Type=oneshot
+ExecStart=/opt/folderSync/autoSync.sh
+SyslogIdentifier=FolderSync
+
+[Install]
+WantedBy=multi-user.target

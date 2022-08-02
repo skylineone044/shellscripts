@@ -1,0 +1,10 @@
+[Unit]
+Description=Copies / Moves contents of direcotries defined in a config file every day
+Requires=autoSync.service
+
+[Timer]
+Unit=autoSync.service
+OnCalendar=*-*-* 03:15:00
+
+[Install]
+WantedBy=timers.target
