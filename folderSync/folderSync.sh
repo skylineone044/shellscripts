@@ -12,13 +12,23 @@ MODE=$1
 DRY_RUN="--dry-run" # uncomment to enable try run
 
 # check if source and destiantion directories exisit, if not exit with code 2
-([ -d "$SOURCE" ] || (echo "Directory $SOURCE does not exist"; exit 2;)) &&
-([ -d "$DEST" ] || (echo "Directory $DEST does not exist"; exit 2;)) &&
+if [[ ! -d "$SOURCE" ]]; then
+    echo "Directory $SOURCE does not exist"; exit 2;
+fi
+
+if [[ ! -d "$DEST" ]]; then
+    echo "Directory $DEST does not exist"; exit 2;
+fi
+
 echo "$MODE from $SOURCE to $DEST..."
 
 # get a list of open files in the source directory
 OPEN_FILES=`lsof +D $SOURCE | rg -i " REG " | tr --squeeze-repeats ' ' | cut --delimiter=' ' --fields=9`
-echo "OPEN_FILES: "$OPEN_FILES
+if [[ -z $OPEN_FILES ]]; then
+    echo "No open files"
+else
+    echo "OPEN_FILES: "$OPEN_FILES
+fi
 # convert the list of absolute paths to "--exclude=/relative/path/from/source/dir" list
 EXCLUDE_PATTERNS=""
 for file in $OPEN_FILES ; do
