@@ -20,7 +20,9 @@ echo "Using config: $CONFIG_FILE"
 
 cat $CONFIG_FILE | while read line || [[ -n $line ]];
 do
-   echo "config: $line"
-   (set -x; bash "$SCRIPT_DIR/folderSync.sh" $line)
-   echo ""
+    if [[ ! -z $line ]]; then
+        echo "config: $line"
+        (set -x; bash "$SCRIPT_DIR/folderSync.sh" $line)
+        echo ""
+    fi
 done
