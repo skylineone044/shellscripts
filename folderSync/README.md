@@ -20,18 +20,19 @@ The provided timer will sync all directory pairs as configued in $XDG_CONFIG_HOM
 
 copy or link this directory to `/opt/folderSync/`
 
-link `/opt/folderSync/autoSync.service` to `/etc/systemd/user/autoSync.service`
+link `/opt/folderSync/autoSync.service` to `/etc/systemd/user/autoSync.service`:
 
 ```shell
 sudo ln -s /opt/folderSync/autoSync.service /etc/systemd/user/
 ```
 
-link `/opt/folderSync/autoSync.timer` to `/etc/systemd/user/autoSync.timer`
+link `/opt/folderSync/autoSync.timer` to `/etc/systemd/user/autoSync.timer`:
 
 ```shell
 sudo ln -s /opt/folderSync/autoSync.timer /etc/systemd/user/
 ```
 
+Enable the timer:
 ```shell
 systemctl --user enable autoSync.timer
 ```
