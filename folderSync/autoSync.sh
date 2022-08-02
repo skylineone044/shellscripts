@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ ! -d $XDG_CONFIG_HOME ]]; then
+    XDG_CONFIG_HOME="$HOME/.config/"
+fi
+
 DEFAULT_CONFIG_FILE_PATH="$XDG_CONFIG_HOME/folderSync.conf"
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 
@@ -12,6 +16,7 @@ if [[ ! -f $1 ]]; then
 else
     CONFIG_FILE=`realpath $1`
 fi
+echo "Using config: $CONFIG_FILE"
 
 cat $CONFIG_FILE | while read line || [[ -n $line ]];
 do
