@@ -35,6 +35,7 @@ sudo ln -s /opt/folderSync/autoSync.timer /etc/systemd/user/
 Enable the timer:
 ```shell
 systemctl --user enable autoSync.timer
+systemctl --user start autoSync.timer
 ```
 
 ## Configuration
