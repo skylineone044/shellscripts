@@ -9,7 +9,7 @@ fi
 SOURCE=`realpath $2`
 DEST=`realpath $3`
 MODE=$1
-DRY_RUN="--dry-run" # uncomment to enable try run
+# DRY_RUN="--dry-run" # uncomment to enable try run
 
 # check if source and destiantion directories exisit, if not exit with code 2
 if [[ ! -d "$SOURCE" ]]; then
