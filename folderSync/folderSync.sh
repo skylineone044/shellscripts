@@ -23,7 +23,7 @@ fi
 echo "$MODE from $SOURCE to $DEST..."
 
 # get a list of open files in the source directory
-OPEN_FILES=`lsof +D $SOURCE | rg -i " REG " | tr --squeeze-repeats ' ' | cut --delimiter=' ' --fields=9`
+OPEN_FILES=`lsof +D $SOURCE | rg -i "\d+[wu-]" | tr --squeeze-repeats ' ' | cut --delimiter=' ' --fields=9`
 if [[ -z $OPEN_FILES ]]; then
     echo "No open files"
 else
