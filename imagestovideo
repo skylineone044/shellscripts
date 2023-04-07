@@ -11,7 +11,7 @@ fi
 if !([ -z "$1" ]) && !([ -z "$2" ]) && !([ -z "$3" ])
   then
     echo "specific target"
-    echo "ffmpeg -framerate $3 -pattern_type glob -i \"*.$1\" -c:v libx265 -pix_fmt yuv420p \"$2\""
-    ffmpeg -framerate $3 -pattern_type glob -i "*.$1" -c:v libx265 "$2"
+    echo "ffmpeg -framerate $3 -pattern_type glob -i \"*.$1\" -c:v libx264 -pix_fmt yuv420p \"$2\""
+    ffmpeg -framerate $3 -pattern_type glob -i "*.$1"  -c:v libx264 -pix_fmt yuv420p "$2"
     exit
 fi
