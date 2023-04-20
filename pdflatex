@@ -1,0 +1,10 @@
+#!/bin/bash
+
+docker volume create --name miktex
+docker run --rm -ti \
+    -v miktex:/miktex/.miktex \
+    -v $(pwd):/miktex/work \
+    -e MIKTEX_GID=$(id -g) \
+    -e MIKTEX_UID=$(id -u) \
+    miktex/miktex \
+    pdflatex $1
